@@ -1,4 +1,4 @@
-class Bitcoin::Client
+class Fedoracoin::Client
   attr_reader :api
   def user; api.user; end
   def pass; api.pass; end
@@ -17,7 +17,7 @@ class Bitcoin::Client
   end
 
   def initialize(user, pass, options = {})
-    @api = Bitcoin::API.new({ :user => user, :pass => pass }.merge(options))
+    @api = Fedoracoin::API.new({ :user => user, :pass => pass }.merge(options))
   end
 
   # Safely copies wallet.dat to destination, which can be a directory or a path with filename.
@@ -26,11 +26,11 @@ class Bitcoin::Client
   end
 
   # Returns the account associated with the given address.
-  def getaccount(bitcoinaddress)
-    @api.request 'getaccount', bitcoinaddress
+  def getaccount(fedoracoinaddress)
+    @api.request 'getaccount', fedoracoinaddress
   end
 
-  # Returns the current bitcoin address for receiving payments to this account.
+  # Returns the current fedoracoin address for receiving payments to this account.
   def getaccountaddress(account)
     @api.request 'getaccountaddress', account
   end
@@ -79,7 +79,7 @@ class Bitcoin::Client
     @api.request 'getdifficulty'
   end
 
-  # Returns true or false whether bitcoind is currently generating hashes
+  # Returns true or false whether fedoracoind is currently generating hashes
   def getgenerate
     @api.request 'getgenerate'
   end
@@ -99,7 +99,7 @@ class Bitcoin::Client
     @api.request 'getmininginfo'
   end
 
-  # Returns a new bitcoin address for receiving payments. If +account+ is specified (recommended),
+  # Returns a new fedoracoin address for receiving payments. If +account+ is specified (recommended),
   # it is added to the address book so payments received with the address will be credited to +account+.
   def getnewaddress(account = nil)
     @api.request 'getnewaddress', account
@@ -111,9 +111,9 @@ class Bitcoin::Client
     @api.request 'getreceivedbyaccount', account, minconf
   end
 
-  # Returns the total amount received by +bitcoinaddress+ in transactions with at least +minconf+ confirmations.
-  def getreceivedbyaddress(bitcoinaddress, minconf = 1)
-    @api.request 'getreceivedbyaddress', bitcoinaddress, minconf
+  # Returns the total amount received by +fedoracoinaddress+ in transactions with at least +minconf+ confirmations.
+  def getreceivedbyaddress(fedoracoinaddress, minconf = 1)
+    @api.request 'getreceivedbyaddress', fedoracoinaddress, minconf
   end
 
   # Get detailed information about +txid+
@@ -160,7 +160,7 @@ class Bitcoin::Client
   #   :amount        => total amount received by the address
   #   :confirmations => number of confirmations of the most recent transaction included
   #
-  # To get a list of accounts on the system, execute bitcoind listreceivedbyaddress 0 true
+  # To get a list of accounts on the system, execute fedoracoind listreceivedbyaddress 0 true
   def listreceivedbyaddress(minconf = 1, includeempty = false)
     @api.request 'listreceivedbyaddress', minconf, includeempty
   end
@@ -176,13 +176,13 @@ class Bitcoin::Client
   end
 
   # +amount+ is a real and is rounded to 8 decimal places. Returns the transaction ID if successful.
-  def sendfrom(fromaccount, tobitcoinaddress, amount, minconf = 1, comment = nil, comment_to = nil)
-    @api.request 'sendfrom', fromaccount, tobitcoinaddress, amount, minconf, comment, comment_to
+  def sendfrom(fromaccount, tofedoracoinaddress, amount, minconf = 1, comment = nil, comment_to = nil)
+    @api.request 'sendfrom', fromaccount, tofedoracoinaddress, amount, minconf, comment, comment_to
   end
 
   # +amount+ is a real and is rounded to 8 decimal places
-  def sendtoaddress(bitcoinaddress, amount, comment = nil, comment_to = nil)
-    @api.request 'sendtoaddress', bitcoinaddress, amount, comment, comment_to
+  def sendtoaddress(fedoracoinaddress, amount, comment = nil, comment_to = nil)
+    @api.request 'sendtoaddress', fedoracoinaddress, amount, comment, comment_to
   end
 
   def sendmany(fromaccount, addresses_amounts, minconf = 1, comment = nil)
@@ -190,8 +190,8 @@ class Bitcoin::Client
   end
 
   # Sets the account associated with the given address.
-  def setaccount(bitcoinaddress, account)
-    @api.request 'setaccount', bitcoinaddress, account
+  def setaccount(fedoracoinaddress, account)
+    @api.request 'setaccount', fedoracoinaddress, account
   end
 
   # +generate+ is true or false to turn generation on or off.
@@ -200,24 +200,24 @@ class Bitcoin::Client
     @api.request 'setgenerate', generate, genproclimit
   end
 
-  # Stop bitcoin server.
+  # Stop fedoracoin server.
   def stop
     @api.request 'stop'
   end
 
-  # Return information about +bitcoinaddress+.
-  def validateaddress(bitcoinaddress)
-    @api.request 'validateaddress', bitcoinaddress
+  # Return information about +fedoracoinaddress+.
+  def validateaddress(fedoracoinaddress)
+    @api.request 'validateaddress', fedoracoinaddress
   end
 
-  # Sign a message using +bitcoinaddress+.
-  def signmessage(bitcoinaddress, message)
-    @api.request 'signmessage', bitcoinaddress, message
+  # Sign a message using +fedoracoinaddress+.
+  def signmessage(fedoracoinaddress, message)
+    @api.request 'signmessage', fedoracoinaddress, message
   end
 
-  # Verify signature made by +bitcoinaddress+.
-  def verifymessage(bitcoinaddress, signature, message)
-    @api.request 'verifymessage', bitcoinaddress, signature, message
+  # Verify signature made by +fedoracoinaddress+.
+  def verifymessage(fedoracoinaddress, signature, message)
+    @api.request 'verifymessage', fedoracoinaddress, signature, message
   end
 
   # Stores the wallet decryption key in memory for +timeout+ seconds.

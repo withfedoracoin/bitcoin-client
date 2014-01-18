@@ -1,4 +1,4 @@
-class Bitcoin::API
+class Fedoracoin::API
   attr_reader :options
   attr_reader :params
   
@@ -17,7 +17,7 @@ class Bitcoin::API
   def initialize(options = {})
     @options = {
       :host => 'localhost',
-      :port => 8332,
+      :port => 22888,
       :ssl  => false
     }.merge(options)
   end
@@ -27,7 +27,7 @@ class Bitcoin::API
   end
   
   def request(service_name, *params)
-    req = Bitcoin::Request.new(service_name, params)
-    Bitcoin::RPC.new(to_hash).dispatch(req)
+    req = Fedoracoin::Request.new(service_name, params)
+    Fedoracoin::RPC.new(to_hash).dispatch(req)
   end
 end

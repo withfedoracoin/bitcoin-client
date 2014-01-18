@@ -1,21 +1,19 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "bitcoin/version"
+require "fedoracoin/version"
 
 Gem::Specification.new do |s|
   s.licenses    = [ 'MIT' ]
-  s.name        = "bitcoin-client"
-  s.version     = Bitcoin::VERSION
-  s.authors     = ["Colin MacKenzie IV"]
-  s.email       = ["sinisterchipmunk@gmail.com"]
-  s.homepage    = "http://github.com/sinisterchipmunk/bitcoin-client"
-  s.summary     = %q{Provides a Ruby library to the complete Bitcoin JSON-RPC API.}
-  s.description = "Provides a Ruby library to the complete Bitcoin JSON-RPC API. "+
+  s.name        = "fedoracoin-client"
+  s.version     = Fedoracoin::VERSION
+  s.authors     = ["w/ Fedoracoin", "Colin MacKenzie IV"]
+  s.email       = ["contact-us@pay.withfedoraco.in", "sinisterchipmunk@gmail.com"]
+  s.homepage    = "http://github.com/withfedoraco.in/fedoracoin-client"
+  s.summary     = %q{Provides a Ruby library to the complete Fedoracoin JSON-RPC API.}
+  s.description = "Provides a Ruby library to the complete Fedoracoin JSON-RPC API. "+
                   "Implements all methods listed at "+
                   "https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_Calls_list and "+
                   "lets you set options such as the host and port number, and whether to use SSL."
-
-  s.rubyforge_project = "bitcoin-client"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

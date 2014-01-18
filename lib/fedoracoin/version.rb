@@ -1,4 +1,4 @@
-module Bitcoin
+module Fedoracoin
   module Version
     MAJOR = 0
     MINOR = 0
